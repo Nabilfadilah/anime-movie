@@ -1,13 +1,44 @@
-import { forwardRef } from "react";
+"use client";
+
+import { useRouter } from "next/navigation";
+import { forwardRef, useRef } from "react";
 import { AiOutlineSearch } from "react-icons/ai"; // Import ikon dari React Icons
 
-const InputSeacrh = forwardRef((props, ref) => {
+const InputSearch = forwardRef((props, ref) => {
   const { placeholder, name, className, onChange } = props;
+  const searchRef = useRef();
+  const router = useRouter();
+
+  // Handle tombol Enter
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      handleSearch(); // Panggil fungsi pencarian
+    }
+  };
+
+  // Handle tombol klik dan real-time update
+  const handleSearch = () => {
+    const keyword = searchRef.current?.value || "";
+    if (keyword.trim()) {
+      router.push(`/search/${keyword}`); // Navigasi ke halaman pencarian
+    }
+  };
+
+  // const handleInputChange = (event) => {
+  //   const keyword = event.target.value;
+  //   if (keyword.trim()) {
+  //     router.push(`/search/${keyword}`); // Navigasi otomatis saat input berubah
+  //   }
+  //   if (onChange) onChange(event); // Tetap memanggil onChange props jika ada
+  // };
 
   return (
-    <div className="relative w-80">
+    <div className="relative">
       {/* Ikon Search */}
-      <AiOutlineSearch className="absolute left-3 top-2.5 text-gray-400" />
+      <button onClick={handleSearch}>
+        <AiOutlineSearch className="absolute left-3 top-2.5 text-gray-400" />
+      </button>
 
       {/* Input Field */}
       <input
@@ -16,11 +47,12 @@ const InputSeacrh = forwardRef((props, ref) => {
         placeholder={placeholder || "Cari..."}
         name={name}
         id={name}
-        ref={ref}
-        onChange={onChange}
+        ref={ref || searchRef}
+        onKeyDown={handleKeyDown} // Tangani Enter
+        // onChange={handleInputChange} // Update real-time
       />
     </div>
   );
 });
 
-export default InputSeacrh;
+export default InputSearch;
