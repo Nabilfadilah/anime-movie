@@ -11,11 +11,12 @@ module.exports = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
-    },
+    }
+    ,
     colors: {
       color: {
         primary: '#eeeeee',
-        accent: '#005E88',
+        accent: '#CECECE',
         secondary: '#393e46',
         dark: '#222831'
       }
