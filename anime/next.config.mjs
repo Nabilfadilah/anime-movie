@@ -1,4 +1,14 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+
+// menambahkan url dari luar/cdn
+const nextConfig = {
+    images: {
+        remotePatterns: [
+            {
+                hostname: "cdn.myanimelist.net"
+            }
+        ]
+    }
+};
 
 export default nextConfig;
