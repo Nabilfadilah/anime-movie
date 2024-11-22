@@ -1,20 +1,4 @@
-// import React from 'react'
-
-// const page = async ({ params }) => {
-
-//     // Ambil dan pastikan `params` sudah di-resolve
-//     const { keyword } = await params;
-
-//     return (
-//         <div>
-//             <h2>Pencarian untuk : {keyword}</h2>
-//             <h1>SEARCH PAGE</h1>
-//         </div>
-//     )
-// }
-
-// export default page
-
+import { getAnimeResponse } from "@/app/libs/api-libs";
 import AnimeList from "@/components/AnimeList";
 import Header from "@/components/AnimeList/Header";
 
@@ -24,19 +8,9 @@ const Page = async ({ params }) => {
   const { keyword } = params;
 
   // Decode keyword
-  const decodedKeyword = decodeURIComponent(keyword);
-  console.log("Decoded:", decodedKeyword);
+  const decodedKeyword = decodeURI(keyword);
 
-  {
-    /* server component, gak bisa pake useEffect, useState, dll.. */
-  }
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/anime?q=${decodedKeyword}`
-  );
-
-  // keluarkan dulu datanya
-  const searchAnime = await response.json();
-  // console.log('Ini data api anime : ', anime);
+  const searchAnime = await getAnimeResponse("anime", `q=${decodedKeyword}`);
 
   return (
     <>
