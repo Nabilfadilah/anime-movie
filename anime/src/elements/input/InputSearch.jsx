@@ -65,9 +65,9 @@ const InputSearch = forwardRef((props, ref) => {
   return (
     <div className="flex">
       {/* Ikon Search */}
-      {/* <Button className="grid items-center" onClick={handleSearch}> */}
-      {/* <AiOutlineSearch className="left-3 top-2.5 text-color-secondary" /> */}
-      {/* </Button> */}
+      {/* <Button className="grid items-center" onClick={handleSearch}>
+        <AiOutlineSearch className="left-3 top-2.5 text-color-secondary" />
+      </Button> */}
 
       {/* Input Field */}
       <input
