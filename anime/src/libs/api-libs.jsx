@@ -12,5 +12,17 @@ export const getAnimeResponse = async (resource, query) => {
 // double map by recomendasi
 export const getNestedAnimeResponse = async (resource, objectProperty) => {
   const response = await getAnimeResponse(resource);
-  return response.data.flatMap((item) => item.entry);
+  return response.data.flatMap((item) => item[objectProperty]);
+};
+
+// random data api refres rekomendasi
+export const reproduce = (data, gap) => {
+  const first = ~~(Math.random() * (data.length - gap) + 1);
+  const last = first + gap;
+
+  const response = {
+    data: data.slice(first, last),
+  };
+
+  return response;
 };
