@@ -1,14 +1,17 @@
 import Typography from "@/elements/button/text/Typography";
 import { authUserSession } from "@/libs/auth-libs";
 import Image from "next/image";
+import Link from "next/link";
+import { redirect } from "next/navigation";
 import React from "react";
 
 const Page = async () => {
   const user = await authUserSession();
-  console.log("Gabarnya ada? : ", user.image);
+  // console.log("Gabarnya ada? : ", user.image);
+  if (!user) redirect("/");
 
   return (
-    <div className="min-h-screen flex items-start justify-start p-6">
+    <div className="min-h-screen flex items-center justify-center p-6">
       <div className="bg-color-primary shadow-lg rounded-lg p-8 max-w-sm w-full text-center">
         <Typography className="text-3xl font-bold text-gray-800 mb-4">
           Dashboard
@@ -24,6 +27,21 @@ const Page = async () => {
             height={160}
             className="rounded-full border-4 border-indigo-500 shadow-lg"
           />
+        </div>
+
+        <div className="flex items-center gap-4 py-8">
+          <Link
+            href="/users/dashboard/collection"
+            className="bg-color-accent text-color-dark font-bold px-4 py-3 text-xl rounded-xl"
+          >
+            My Collection
+          </Link>
+          <Link
+            href="/users/dashboard/comment"
+            className="bg-color-accent text-color-dark font-bold px-4 py-3 text-xl rounded-xl"
+          >
+            My Comment
+          </Link>
         </div>
       </div>
     </div>
