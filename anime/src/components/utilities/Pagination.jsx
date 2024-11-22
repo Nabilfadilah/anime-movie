@@ -32,12 +32,15 @@ const Pagination = ({ page, lastPage, setPage }) => {
       <Typography>
         {page} of {lastPage}
       </Typography>
-      <Button
-        onClick={handleNextPage}
-        className="transition-all hover:text-color-accent"
-      >
-        Next
-      </Button>
+
+      {page >= lastPage ? null : (
+        <Button
+          onClick={handleNextPage}
+          className="transition-all hover:text-color-accent"
+        >
+          Next
+        </Button>
+      )}
     </div>
   );
 };
