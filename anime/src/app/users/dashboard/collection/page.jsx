@@ -1,38 +1,51 @@
 import Header from "@/components/Dashboard/Header";
 import Typography from "@/elements/button/text/Typography";
+import { getAnimeResponse } from "@/libs/api-libs";
+import { authUserSession } from "@/libs/auth-libs";
+import prisma from "@/libs/prisma";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const page = () => {
+const page = async ({ params: { id } }) => {
+  const anime = await getAnimeResponse(`anime/${id}`);
+  console.log("anime data response : ", anime);
+
+  // memanggil authecntikasi user
+  const user = await authUserSession();
+
+  // panggil data collection di server component
+  const collection = await prisma.conllection.findMany({
+    where: { user_email: user.email },
+  });
+  console.log("INI data Collection : ", collection);
+
   return (
     <section className="mt-4 p-4">
       <Header title={"My Collection"} />
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <Link href="/" className="relative border-2">
-          <Image src="" alt="" width={350} height={350} className="w-full" />
-          <div className="absolute flex items-center justify-center bottom-0 w-full bg-color-accent h-16">
-            <Typography className="text-xl text-center">Judul Anime</Typography>
-          </div>
-        </Link>
-        <Link href="/" className="relative border-2">
-          <Image src="" alt="" width={350} height={350} className="w-full" />
-          <div className="absolute flex items-center justify-center bottom-0 w-full bg-color-accent h-16">
-            <Typography className="text-xl text-center">Judul Anime</Typography>
-          </div>
-        </Link>
-        <Link href="/" className="relative border-2">
-          <Image src="" alt="" width={350} height={350} className="w-full" />
-          <div className="absolute flex items-center justify-center bottom-0 w-full bg-color-accent h-16">
-            <Typography className="text-xl text-center">Judul Anime</Typography>
-          </div>
-        </Link>
-        <Link href="/" className="relative border-2">
-          <Image src="" alt="" width={350} height={350} className="w-full" />
-          <div className="absolute flex items-center justify-center bottom-0 w-full bg-color-accent h-16">
-            <Typography className="text-xl text-center">Judul Anime</Typography>
-          </div>
-        </Link>
+        {collection.map((collect, index) => {
+          return (
+            <Link
+              id={index}
+              href={`/anime/${collect.anime_mal_id}`}
+              className="relative border-2"
+            >
+              <Image
+                src={anime.data.images.webp.image_url}
+                alt={anime.data.images.jpg.image_url}
+                width={350}
+                height={350}
+                className="w-full"
+              />
+              <div className="absolute flex items-center justify-center bottom-0 w-full bg-color-accent h-16">
+                <Typography className="text-xl text-center">
+                  {collect.anime_mal_id}
+                </Typography>
+              </div>
+            </Link>
+          );
+        })}
       </div>
     </section>
   );
