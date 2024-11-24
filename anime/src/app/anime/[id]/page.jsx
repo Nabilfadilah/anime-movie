@@ -3,10 +3,21 @@ import VideoPlayer from "@/components/utilities/VideoPlayer";
 import Typography from "@/elements/button/text/Typography";
 import Image from "next/image";
 import React from "react";
+import CollectionButton from "@/components/AnimeList/CollectionButton";
+import { authUserSession } from "@/libs/auth-libs";
+import prisma from "@/libs/prisma";
 
 const Page = async ({ params: { id } }) => {
   const anime = await getAnimeResponse(`anime/${id}`);
   console.log(anime);
+
+  const user = await authUserSession();
+
+  // menghilangkan button add colection jika sudah di tambahkan
+  const collection = await prisma.conllection.findFirst({
+    where: { user_email: user?.email, anime_mal_id: id },
+  });
+  console.log(collection);
 
   return (
     <>
@@ -14,6 +25,10 @@ const Page = async ({ params: { id } }) => {
         <Typography className="text-2xl text-color-primary">
           {anime.data.title} - {anime.data.year}
         </Typography>
+
+        {!collection && user && (
+          <CollectionButton anime_mal_id={id} user_email={user?.email} />
+        )}
       </div>
 
       <div className="pt-4 px-4 flex gap-2 text-color-primary overflow-x-auto">
