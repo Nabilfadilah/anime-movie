@@ -6,6 +6,7 @@ import React from "react";
 import CollectionButton from "@/components/AnimeList/CollectionButton";
 import { authUserSession } from "@/libs/auth-libs";
 import prisma from "@/libs/prisma";
+import CommentInput from "@/components/AnimeList/CommentInput";
 
 const Page = async ({ params: { id } }) => {
   const anime = await getAnimeResponse(`anime/${id}`);
@@ -79,6 +80,11 @@ const Page = async ({ params: { id } }) => {
         <Typography className="text-justify text-xl">
           RINGKASAN : {anime.data.synopsis}
         </Typography>
+      </div>
+
+      {/* input comment  */}
+      <div className="px-4 py-2">
+        <CommentInput />
       </div>
 
       <div>
