@@ -2,9 +2,9 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "../components/Navbar";
 
-import { Gabarito } from "next/font/google"
+import { Gabarito } from "next/font/google";
 
-const gabarito = Gabarito({subsets: ['latin']})
+const gabarito = Gabarito({ subsets: ["latin"] });
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
