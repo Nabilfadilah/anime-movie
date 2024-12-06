@@ -15,7 +15,7 @@ const page = async ({ params: { id } }) => {
   const user = await authUserSession();
 
   // panggil data collection di server component
-  const collection = await prisma.conllection.findMany({
+  const collection = await prisma.collection.findMany({
     where: { user_email: user.email },
   });
   console.log("INI data Collection : ", collection);
@@ -29,18 +29,18 @@ const page = async ({ params: { id } }) => {
             <Link
               id={index}
               href={`/anime/${collect.anime_mal_id}`}
-              className="relative border-2"
+              className="relative"
             >
               <Image
-                src={anime.data.images.webp.image_url}
-                alt={anime.data.images.jpg.image_url}
+                src={collect.anime_image}
+                alt={collect.anime_image}
                 width={350}
                 height={350}
                 className="w-full"
               />
               <div className="absolute flex items-center justify-center bottom-0 w-full bg-color-accent h-16">
                 <Typography className="text-xl text-center">
-                  {collect.anime_mal_id}
+                  {collect.anime_title}
                 </Typography>
               </div>
             </Link>
