@@ -7,6 +7,7 @@ import CollectionButton from "@/components/AnimeList/CollectionButton";
 import { authUserSession } from "@/libs/auth-libs";
 import prisma from "@/libs/prisma";
 import CommentInput from "@/components/AnimeList/CommentInput";
+import CommentBox from "@/components/AnimeList/CommentBox";
 
 const Page = async ({ params: { id } }) => {
   const anime = await getAnimeResponse(`anime/${id}`);
@@ -82,9 +83,30 @@ const Page = async ({ params: { id } }) => {
         </Typography>
       </div>
 
+      {/* comment box */}
+      <div className="px-4 mt-2">
+        <Typography className="text-color-primary font-bold text-xl mb-1">
+          Komentar Penonton:
+        </Typography>
+        <CommentBox anime_mal_id={id} />
+      </div>
+
       {/* input comment  */}
-      <div className="px-4 py-2">
-        <CommentInput />
+      <div className="px-4">
+        {user && (
+          <Typography className="text-color-primary font-bold text-xl mb-1">
+            Tambah Komentar:
+          </Typography>
+        )}
+
+        {user && (
+          <CommentInput
+            anime_mal_id={id}
+            user_email={user?.email}
+            username={user?.name}
+            anime_title={anime.data.title}
+          />
+        )}
       </div>
 
       <div>
