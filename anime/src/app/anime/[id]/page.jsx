@@ -14,7 +14,7 @@ const Page = async ({ params: { id } }) => {
   const user = await authUserSession();
 
   // menghilangkan button add colection jika sudah di tambahkan
-  const collection = await prisma.conllection.findFirst({
+  const collection = await prisma.collection.findFirst({
     where: { user_email: user?.email, anime_mal_id: id },
   });
   console.log(collection);
@@ -27,7 +27,12 @@ const Page = async ({ params: { id } }) => {
         </Typography>
 
         {!collection && user && (
-          <CollectionButton anime_mal_id={id} user_email={user?.email} />
+          <CollectionButton
+            anime_mal_id={id}
+            user_email={user?.email}
+            anime_image={anime.data.images.webp.image_url}
+            anime_title={anime.data.title}
+          />
         )}
       </div>
 
