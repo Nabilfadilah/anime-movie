@@ -13,10 +13,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Conllection {
-  id           Int    @id @default(autoincrement())
+model Collection {
+  id           Int     @id @default(autoincrement())
   anime_mal_id String
   user_email   String
+  anime_image  String? // kolom baru
+  anime_title  String? // kolom baru
 
   @@unique([user_email, anime_mal_id])
 }
