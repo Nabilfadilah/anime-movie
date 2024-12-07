@@ -40,6 +40,9 @@ const CommentInput = ({ anime_mal_id, user_email, username, anime_title }) => {
     return;
   };
 
+  // untuk disable button ketika kurang dari 3 huruf
+  const isButtonDisable = comment.trim().length < 3;
+
   return (
     <div className="flex flex-col gap-2">
       {isCreated && (
@@ -49,9 +52,11 @@ const CommentInput = ({ anime_mal_id, user_email, username, anime_title }) => {
         <textarea
           onChange={handleInput}
           value={comment}
+          placeholder="Tulis komentar Anda..."
           className="w-full h-28 text-color-dark rounded-lg p-2"
         ></textarea>
         <Button
+          disabled={isButtonDisable}
           onClick={handlePosting}
           className="py-2 px-3 text-color-dark hover:text-color-accent bg-color-accent hover:bg-color-secondary"
         >
