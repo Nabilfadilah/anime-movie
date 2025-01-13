@@ -1,7 +1,7 @@
 "use client";
 
 import Button from "@/elements/button/Button";
-import React, { useState } from "react";
+import React, {useState} from "react";
 
 const CollectionButton = ({
   anime_mal_id,
@@ -15,7 +15,7 @@ const CollectionButton = ({
     event.preventDefault();
 
     // kalau punya data baru ya tinggal tambah parameter
-    const data = { anime_mal_id, user_email, anime_image, anime_title };
+    const data = {anime_mal_id, user_email, anime_image, anime_title};
     const response = await fetch("/api/v1/collection", {
       method: "POST",
       body: JSON.stringify(data),
@@ -40,7 +40,7 @@ const CollectionButton = ({
       ) : (
         <Button
           onClick={handleCollection}
-          className="px-2 py-1 mt-2 bg-color-primary hover:bg-color-accent"
+          className="px-2 py-1 mt-2 bg-white hover:bg-gray-300"
         >
           Add To Collection
         </Button>
