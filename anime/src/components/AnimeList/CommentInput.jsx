@@ -2,11 +2,11 @@
 
 import Button from "@/elements/button/Button";
 import Typography from "@/elements/button/text/Typography";
-import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import {useRouter} from "next/navigation";
+import React, {useState} from "react";
 // import { FaStar } from "react-icons/fa";
 
-const CommentInput = ({ anime_mal_id, user_email, username, anime_title }) => {
+const CommentInput = ({anime_mal_id, user_email, username, anime_title}) => {
   const [comment, setComment] = useState("");
   const [isCreated, setIsCreated] = useState(false);
   // state rating
@@ -25,7 +25,7 @@ const CommentInput = ({ anime_mal_id, user_email, username, anime_title }) => {
 
     // kalau punya data baru ya tinggal tambah parameter
     // data komentar dan rating
-    const data = { anime_mal_id, user_email, comment, username, anime_title };
+    const data = {anime_mal_id, user_email, comment, username, anime_title};
     const response = await fetch("/api/v1/comment", {
       method: "POST",
       body: JSON.stringify(data),
@@ -83,7 +83,7 @@ const CommentInput = ({ anime_mal_id, user_email, username, anime_title }) => {
         <Button
           disabled={isButtonDisable}
           onClick={handlePosting}
-          className="py-2 px-3 text-color-dark hover:text-color-accent bg-color-accent hover:bg-color-secondary"
+          className="py-2 px-3 text-white hover:text-white bg-black hover:bg-gray-800 cursor-pointer"
         >
           Posting Komentar
         </Button>
