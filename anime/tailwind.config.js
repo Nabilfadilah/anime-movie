@@ -13,14 +13,14 @@ module.exports = {
       },
     }
     ,
-    colors: {
-      color: {
-        primary: '#eeeeee',
-        accent: '#CECECE',
-        secondary: '#393e46',
-        dark: '#222831'
-      }
-    }
+    // colors: {
+    //   color: {
+    //     primary: '#eeeeee',
+    //     accent: '#CECECE',
+    //     secondary: '#393e46',
+    //     dark: '#222831'
+    //   }
+    // }
   },
   plugins: [],
 };
