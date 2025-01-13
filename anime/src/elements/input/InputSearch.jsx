@@ -1,12 +1,12 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { forwardRef, useRef, useState } from "react";
-import { AiOutlineSearch } from "react-icons/ai"; // Import ikon dari React Icons
+import {useRouter} from "next/navigation";
+import {forwardRef, useRef, useState} from "react";
+import {AiOutlineSearch} from "react-icons/ai"; // Import ikon dari React Icons
 import Button from "../button/Button";
 
 const InputSearch = forwardRef((props, ref) => {
-  const { placeholder, name, className, onChange } = props;
+  const {placeholder, name, className, onChange} = props;
   const searchRef = useRef();
   const router = useRouter();
   const [keyword, setKeyword] = useState(""); // Simpan nilai input saat ini
@@ -63,7 +63,7 @@ const InputSearch = forwardRef((props, ref) => {
   // };
 
   return (
-    <div className="flex">
+    <div className="w-full sm:w-[300px] md:w-[70%] relative">
       {/* Ikon Search */}
       {/* <Button className="grid items-center" onClick={handleSearch}>
         <AiOutlineSearch className="left-3 top-2.5 text-color-secondary" />
@@ -72,7 +72,7 @@ const InputSearch = forwardRef((props, ref) => {
       {/* Input Field */}
       <input
         type="search"
-        className={`text-sm border border-gray-500 rounded w-full py-2 px-10 text-slate-700 placeholder:opacity-90 ${className}`}
+        className={`text-sm border border-gray-400 p-2 px-4 rounded-lg w-24 ${className}`}
         placeholder={placeholder || "Cari..."}
         name={name}
         id={name}
