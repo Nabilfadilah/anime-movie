@@ -40,7 +40,7 @@ const Page = async () => {
       </section>
 
       {/* Paling populer */}
-      <section>
+      <section className="mb-5">
         {/* anime list punya data api dari topAnime */}
         <Header
           title="Paling Rekomendasi"
