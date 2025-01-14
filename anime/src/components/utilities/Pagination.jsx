@@ -2,7 +2,7 @@ import Button from "@/elements/button/Button";
 import Typography from "@/elements/button/text/Typography";
 import React from "react";
 
-const Pagination = ({ page, lastPage, setPage }) => {
+const Pagination = ({page, lastPage, setPage}) => {
   const scrollTop = () => {
     scrollTo({
       behavior: "smooth",
@@ -25,7 +25,7 @@ const Pagination = ({ page, lastPage, setPage }) => {
       <Button
         disabled={page === 1}
         onClick={handlePrevPage}
-        className="transition-all hover:text-color-accent"
+        className="transition-all text-white hover:text-gray-300 bg-orange-950 hover:bg-orange-900 p-2"
       >
         Prev
       </Button>
@@ -36,7 +36,7 @@ const Pagination = ({ page, lastPage, setPage }) => {
       {page >= lastPage ? null : (
         <Button
           onClick={handleNextPage}
-          className="transition-all hover:text-color-accent"
+          className="transition-all text-white hover:text-gray-300 bg-orange-950 hover:bg-orange-900 p-2"
         >
           Next
         </Button>
