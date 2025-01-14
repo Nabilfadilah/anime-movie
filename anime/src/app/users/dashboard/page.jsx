@@ -1,8 +1,8 @@
 import Typography from "@/elements/button/text/Typography";
-import { authUserSession } from "@/libs/auth-libs";
+import {authUserSession} from "@/libs/auth-libs";
 import Image from "next/image";
 import Link from "next/link";
-import { redirect } from "next/navigation";
+import {redirect} from "next/navigation";
 import React from "react";
 
 const Page = async () => {
@@ -12,7 +12,7 @@ const Page = async () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-6">
-      <div className="bg-color-primary shadow-lg rounded-lg p-8 max-w-sm w-full text-center">
+      <div className="bg-color-primary rounded-lg border-t-8 border-orange-950 p-8 max-w-sm w-full text-center shadow-xl shadow-gray-500">
         <Typography className="text-3xl font-bold text-gray-800 mb-4">
           Dashboard
         </Typography>
@@ -29,16 +29,16 @@ const Page = async () => {
           />
         </div>
 
-        <div className="flex items-center gap-4 py-8">
+        <div className="flex items-center justify-center gap-4 py-8">
           <Link
             href="/users/dashboard/collection"
-            className="bg-color-accent text-color-dark font-bold px-4 py-3 text-xl rounded-xl"
+            className="bg-orange-950 hover:bg-orange-900 text-white font-bold px-4 py-3 text-sm rounded-xl"
           >
             My Collection
           </Link>
           <Link
             href="/users/dashboard/comment"
-            className="bg-color-accent text-color-dark font-bold px-4 py-3 text-xl rounded-xl"
+            className="bg-orange-950 hover:bg-orange-900 text-white font-bold px-4 py-3 text-sm rounded-xl"
           >
             My Comment
           </Link>
